@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — VRTX Digital Agency</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+
+  <nav id="nav">
+    <a href="/" class="nav-logo">VRTX</a>
+    <div class="nav-links">
+      <a href="/services">Services</a>
+      <a href="/work">Work</a>
+      <a href="/contact" class="nav-cta">Start a Project</a>
+    </div>
+  </nav>
+
+  <div class="contact-wrapper">
+
+    <!-- LEFT -->
+    <div class="contact-left">
+      <p class="section-label reveal">Let's Talk</p>
+      <h1 class="section-title reveal" style="font-size:clamp(48px,7vw,96px)">
+        Start<br>Something
+        <em>great.</em>
+      </h1>
+
+      <div class="contact-info reveal">
+        <div class="contact-info-item">
+          <div class="contact-info-label">Email</div>
+          <div class="contact-info-val">hello@vrtxstudio.com</div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-label">Response Time</div>
+          <div class="contact-info-val">Within 24 hours</div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-label">Location</div>
+          <div class="contact-info-val">Remote — Worldwide</div>
+        </div>
+      </div>
+
+      <div style="margin-top:64px" class="reveal">
+        <p class="section-label">What clients say</p>
+        <blockquote style="margin-top:20px;border-left:2px solid #333;padding-left:24px">
+          <p style="font-size:15px;line-height:1.8;color:var(--dim);font-style:italic">
+            "VRTX transformed our online presence completely. Our traffic tripled in three months,
+            and our conversion rate nearly doubled. Best investment we made."
+          </p>
+          <footer style="margin-top:12px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#555">
+            — Sarah K., CEO of LuxeHome
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="contact-right">
+      <p class="section-label reveal">Project Brief</p>
+      <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="your@email.com" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="company">Company / Website</label>
+          <input type="text" id="company" placeholder="Your company or current URL" />
+        </div>
+
+        <div class="form-group">
+          <label for="service">Service Needed</label>
+          <select id="service" required>
+            <option value="" disabled selected>Select a service...</option>
+            <option value="web">Web Design &amp; Development</option>
+            <option value="ecommerce">E-Commerce</option>
+            <option value="seo">SEO</option>
+            <option value="ads">Paid Advertising</option>
+            <option value="brand">Brand Identity</option>
+            <option value="social">Social Media Management</option>
+            <option value="full">Full Digital Package</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="budget">Budget Range</label>
+          <select id="budget" required>
+            <option value="" disabled selected>Select your budget...</option>
+            <option value="500">Under $500/mo</option>
+            <option value="1000">$500 – $1,000/mo</option>
+            <option value="2500">$1,000 – $2,500/mo</option>
+            <option value="5000">$2,500 – $5,000/mo</option>
+            <option value="10000">$5,000+/mo</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Tell us about your project</label>
+          <textarea id="message" rows="4" placeholder="What are your goals? What's the timeline? Any details help." required></textarea>
+        </div>
+
+        <button type="submit" class="form-submit" id="submit-btn">
+          Send Brief →
+        </button>
+
+        <div id="success-msg" style="display:none;padding:16px;border:1px solid #333;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--dim)">
+          ✓ Message received — we'll be in touch within 24 hours.
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-mark">VRTX</div>
+      <div class="footer-tagline">We build what others only imagine.</div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 VRTX Studio. All rights reserved.</span>
+      <div class="footer-links">
+        <a href="/services">Services</a>
+        <a href="/work">Work</a>
+        <a href="/contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="/js/main.js"></script>
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.style.display = 'none';
+        document.getElementById('success-msg').style.display = 'block';
+      }, 1200);
+    }
+  </script>
+</body>
+</html>
