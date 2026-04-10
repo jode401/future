@@ -10,7 +10,19 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.get('/admin',(req,res)=>{
+res.render('login')
 
+})
+app.post("/login",async(req,res)=>{
+const {name,password}=req.body
+if(name==process.env.Admin && password==process.env.password){
+    const data=await model.model.find({})
+res.render('dashboard',{data})
+}else{
+    res.render('cred')
+}
+})
 app.get('/', (req, res) => res.render('index'));
 app.get('/services', (req, res) => res.render('services'));
 app.get('/work', (req, res) => res.render('work'));
@@ -27,6 +39,9 @@ app.post('/form', async (req, res) => {
         console.error("Error saving to database:", e);
         res.status(500).send("An error occurred",e);
     }
+});
+app.use((req, res) => {
+  res.status(404).render("exist");
 });
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));     
