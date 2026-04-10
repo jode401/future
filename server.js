@@ -25,7 +25,7 @@ app.post('/form', async (req, res) => {
         res.redirect('/');
     } catch (e) {
         console.error("Error saving to database:", e);
-        res.status(500).send("An error occurred");
+        res.status(500).send("An error occurred",e);
     }
 });
 const PORT = process.env.PORT || 3000;
