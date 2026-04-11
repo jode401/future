@@ -1,85 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login Error</title>
-    <link rel="icon" href="/logo.png" type="image/x-icon">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Failed —  BrandForge</title>
+  <link rel="icon" href="/logo.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--black:#000;--white:#fff;--dim:#555;--border:#1f1f1f;--red:#ff3b3b;
+      --Fd:'Bebas Neue',sans-serif;--Fb:'DM Mono',monospace;}
+    body{
+      background:var(--black);color:var(--white);font-family:var(--Fb);
+      min-height:100vh;display:flex;align-items:center;justify-content:center;
+      padding:24px;cursor:none;
     }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(135deg, #fff1f2, #f8fafc);
-      padding: 20px;
-      color: #111827;
+    #cur{position:fixed;width:8px;height:8px;background:var(--white);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;}
+    .card{
+      width:100%;max-width:460px;
+      border:1px solid var(--border);
+      padding:0;overflow:hidden;
     }
-
-    .card {
-      width: 100%;
-      max-width: 420px;
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 32px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
-      border: 1px solid #fecaca;
-      text-align: center;
+    .card-top{
+      border-bottom:1px solid var(--border);
+      padding:40px 40px 32px;
+      position:relative;
     }
-
-    .icon {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 16px;
-      border-radius: 50%;
-      background: #fee2e2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 30px;
+    .err-num{
+      font-family:var(--Fd);
+      font-size:clamp(80px,15vw,140px);
+      line-height:1;color:var(--border);
+      position:absolute;top:24px;right:24px;
+      user-select:none;
     }
-
-    h1 {
-      font-size: 26px;
-      margin-bottom: 10px;
-      color: #b91c1c;
+    .badge{
+      display:inline-block;border:1px solid var(--red);
+      color:var(--red);font-size:9px;letter-spacing:4px;
+      text-transform:uppercase;padding:5px 12px;
+      margin-bottom:20px;
     }
-
-    p {
-      color: #6b7280;
-      font-size: 15px;
-      line-height: 1.6;
+    .card h1{
+      font-family:var(--Fd);font-size:52px;
+      letter-spacing:2px;line-height:1;
+      margin-bottom:12px;
     }
-
-    .button {
-      display: inline-block;
-      margin-top: 22px;
-      padding: 12px 18px;
-      border-radius: 12px;
-      background: #111827;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
+    .card p{
+      font-size:12px;color:var(--dim);
+      letter-spacing:1px;line-height:1.8;
     }
-
-    .button:hover {
-      background: #1f2937;
+    .card-bot{
+      padding:28px 40px;
+      display:flex;align-items:center;
+      justify-content:space-between;
+      gap:16px;flex-wrap:wrap;
     }
+    .hint{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);}
+    .btn{
+      display:inline-block;
+      background:var(--white);color:var(--black);
+      font-family:var(--Fb);font-size:10px;
+      letter-spacing:4px;text-transform:uppercase;
+      padding:14px 28px;cursor:none;
+      transition:background .2s;border:none;
+      text-decoration:none;
+    }
+    .btn:hover{background:#e8e8e8}
+    @keyframes fu{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    .card{animation:fu .6s both}
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="icon">!</div>
-    <h1>Login Failed</h1>
-    <p>The name or password does not match.</p>
-    <a class="button" href="/login">Try Again</a>
+<div id="cur"></div>
+<div class="card">
+  <div class="card-top">
+    <div class="err-num">!</div>
+    <div class="badge">Auth Error</div>
+    <h1>LOGIN<br>FAILED</h1>
+    <p>The name or password does not match.<br>Check your credentials and try again.</p>
   </div>
+  <div class="card-bot">
+    <span class="hint">Need help? Contact admin.</span>
+    <a href="/login" class="btn">Try Again &rarr;</a>
+  </div>
+</div>
+<script>
+const c=document.getElementById('cur');
+document.addEventListener('mousemove',e=>{c.style.left=e.clientX+'px';c.style.top=e.clientY+'px'});
+document.querySelectorAll('a,.btn').forEach(el=>{el.addEventListener('mouseenter',()=>c.style.cssText+='width:36px;height:36px;');el.addEventListener('mouseleave',()=>c.style.cssText='');});
+</script>
 </body>
 </html>

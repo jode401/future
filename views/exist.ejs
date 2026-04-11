@@ -1,81 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/logo.png" type="image/x-icon">
-  <title>404 - Page Not Found</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 — BrandForge</title>
+  <link rel="icon" href="/logo.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--black:#000;--white:#fff;--dim:#555;--dim2:#888;--border:#1f1f1f;
+      --Fd:'Bebas Neue',sans-serif;--Fb:'DM Mono',monospace;--Fi:'Playfair Display',serif;}
+    body{
+      background:var(--black);color:var(--white);font-family:var(--Fb);
+      min-height:100vh;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;
+      padding:40px 24px;cursor:none;overflow:hidden;
     }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(135deg, #eef2ff, #f8fafc);
-      padding: 20px;
-      color: #111827;
+    #cur{position:fixed;width:8px;height:8px;background:var(--white);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s;mix-blend-mode:difference;}
+    #cur.big{width:40px;height:40px}
+    canvas{position:fixed;inset:0;z-index:0}
+    .content{position:relative;z-index:2;text-align:center;max-width:600px}
+    .num{
+      font-family:var(--Fd);
+      font-size:clamp(120px,22vw,260px);
+      line-height:.85;letter-spacing:-4px;
+      color:var(--white);
+      margin-bottom:0;
     }
-
-    .card {
-      width: 100%;
-      max-width: 500px;
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 40px 30px;
-      text-align: center;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
-      border: 1px solid #e5e7eb;
+    .num em{
+      font-family:var(--Fi);font-style:italic;
+      font-size:.38em;color:var(--dim2);
+      display:block;letter-spacing:2px;
     }
-
-    .code {
-      font-size: 72px;
-      font-weight: 800;
-      color: #6366f1;
-      margin-bottom: 10px;
+    .divider{
+      width:60px;height:1px;
+      background:var(--border);
+      margin:28px auto;
     }
-
-    h1 {
-      font-size: 26px;
-      margin-bottom: 12px;
+    h1{
+      font-family:var(--Fd);font-size:28px;
+      letter-spacing:4px;margin-bottom:12px;
     }
-
-    p {
-      color: #6b7280;
-      font-size: 15px;
-      line-height: 1.6;
+    p{font-size:12px;color:var(--dim);letter-spacing:1px;line-height:1.9;margin-bottom:36px;}
+    .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn-w{
+      display:inline-block;
+      background:var(--white);color:var(--black);
+      font-family:var(--Fb);font-size:10px;
+      letter-spacing:4px;text-transform:uppercase;
+      padding:16px 36px;text-decoration:none;
+      transition:background .2s;cursor:none;
     }
-
-    .button {
-      display: inline-block;
-      margin-top: 24px;
-      padding: 14px 20px;
-      border-radius: 12px;
-      background: #111827;
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.2s ease;
+    .btn-w:hover{background:#e8e8e8}
+    .btn-o{
+      display:inline-block;
+      border:1px solid var(--border);color:var(--dim);
+      font-family:var(--Fb);font-size:10px;
+      letter-spacing:4px;text-transform:uppercase;
+      padding:16px 36px;text-decoration:none;
+      transition:border-color .2s,color .2s;cursor:none;
     }
-
-    .button:hover {
-      background: #1f2937;
-      transform: translateY(-1px);
-    }
+    .btn-o:hover{border-color:var(--white);color:var(--white)}
+    @keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .content>*{animation:fu .7s both}
+    .content>*:nth-child(1){animation-delay:.05s}
+    .content>*:nth-child(2){animation-delay:.15s}
+    .content>*:nth-child(3){animation-delay:.25s}
+    .content>*:nth-child(4){animation-delay:.35s}
+    .content>*:nth-child(5){animation-delay:.45s}
+    .content>*:nth-child(6){animation-delay:.55s}
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="code">404</div>
-    <h1>Page Not Found</h1>
-    <p>The page you are looking for does not exist or has been moved.</p>
-    <a href="/" class="button">Go Back Home</a>
+<div id="cur"></div>
+<canvas id="c"></canvas>
+<div class="content">
+  <div class="num">
+    404
+    <em>lost in space</em>
   </div>
+  <div class="divider"></div>
+  <h1>PAGE NOT FOUND</h1>
+  <p>The page you're looking for has moved,<br>been deleted, or never existed.</p>
+  <div class="actions">
+    <a href="/" class="btn-w">Go Home &rarr;</a>
+    <a href="/dashboard" class="btn-o">Dashboard</a>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const cur=document.getElementById('cur');
+document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
+document.querySelectorAll('a').forEach(el=>{el.addEventListener('mouseenter',()=>cur.classList.add('big'));el.addEventListener('mouseleave',()=>cur.classList.remove('big'))});
+
+const canvas=document.getElementById('c');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(innerWidth,innerHeight);
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.1,200);
+camera.position.z=20;
+
+// Floating 404 wireframe sphere cluster
+const shapes=[];
+for(let i=0;i<18;i++){
+  const g=i%3===0?new THREE.IcosahedronGeometry(.6+Math.random()*.8,1):i%3===1?new THREE.OctahedronGeometry(.5+Math.random()*.7,0):new THREE.BoxGeometry(.8+Math.random()*.6,.8+Math.random()*.6,.8+Math.random()*.6,2,2,2);
+  const m=new THREE.Mesh(g,new THREE.MeshBasicMaterial({color:0xffffff,wireframe:true,transparent:true,opacity:.03+Math.random()*.07}));
+  m.position.set((Math.random()-.5)*40,(Math.random()-.5)*22,(Math.random()-.5)*10);
+  m.userData={rx:(.001+Math.random()*.003)*(Math.random()>.5?1:-1),ry:(.001+Math.random()*.003)*(Math.random()>.5?1:-1),fa:.3+Math.random()*.8,fo:Math.random()*Math.PI*2,by:m.position.y};
+  scene.add(m);shapes.push(m);
+}
+const ring1=new THREE.Mesh(new THREE.TorusGeometry(12,.02,2,100),new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.06}));
+ring1.rotation.x=Math.PI/3;scene.add(ring1);
+const ring2=new THREE.Mesh(new THREE.TorusGeometry(8,.015,2,80),new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.04}));
+ring2.rotation.x=Math.PI/5;ring2.rotation.z=Math.PI/4;scene.add(ring2);
+
+let mouse={x:0,y:0},t=0;
+document.addEventListener('mousemove',e=>{mouse.x=(e.clientX/innerWidth-.5)*2;mouse.y=-(e.clientY/innerHeight-.5)*2});
+window.addEventListener('resize',()=>{renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix()});
+(function loop(){
+  requestAnimationFrame(loop);t+=.004;
+  shapes.forEach(s=>{s.rotation.x+=s.userData.rx;s.rotation.y+=s.userData.ry;s.position.y=s.userData.by+Math.sin(t+s.userData.fo)*s.userData.fa});
+  ring1.rotation.z=t*.05;ring2.rotation.y=t*.07;
+  camera.position.x+=(mouse.x*.6-camera.position.x)*.04;
+  camera.position.y+=(mouse.y*.4-camera.position.y)*.04;
+  renderer.render(scene,camera);
+})();
+</script>
 </body>
 </html>
