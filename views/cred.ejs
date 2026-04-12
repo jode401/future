@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login Failed —  BrandForge</title>
+  <title>Login Failed — BrandForge</title>
   <link rel="icon" href="/logo.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--black:#000;--white:#fff;--dim:#555;--border:#1f1f1f;--red:#ff3b3b;
+    :root{--black:#000;--white:#fff;--dim:#555;--border:#1a3d2e;--red:#ff3b3b;--forest:#0d2b1f;--forest4:#245c42;--gold:#c9914a;--gold-lt:#e0b278;
       --Fd:'Bebas Neue',sans-serif;--Fb:'DM Mono',monospace;}
     body{
-      background:var(--black);color:var(--white);font-family:var(--Fb);
+      background:#080f0b;color:var(--white);font-family:var(--Fb);
       min-height:100vh;display:flex;align-items:center;justify-content:center;
       padding:24px;cursor:none;
     }
@@ -57,14 +57,14 @@
     .hint{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);}
     .btn{
       display:inline-block;
-      background:var(--white);color:var(--black);
+      background:var(--gold);color:var(--forest);
       font-family:var(--Fb);font-size:10px;
       letter-spacing:4px;text-transform:uppercase;
       padding:14px 28px;cursor:none;
       transition:background .2s;border:none;
       text-decoration:none;
     }
-    .btn:hover{background:#e8e8e8}
+    .btn:hover{background:var(--gold-lt)}
     @keyframes fu{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
     .card{animation:fu .6s both}
   </style>
@@ -79,7 +79,7 @@
     <p>The name or password does not match.<br>Check your credentials and try again.</p>
   </div>
   <div class="card-bot">
-    <span class="hint">Need help? Contact admin.</span>
+    <span class="hint" style="color:var(--forest4)">Need help? Contact admin.</span>
     <a href="/login" class="btn">Try Again &rarr;</a>
   </div>
 </div>

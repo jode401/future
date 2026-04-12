@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login — VRTX Studio</title>
+  <title>Login — BrandForge</title>
   <link rel="icon" href="/logo.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
-      --black:#000;--white:#fff;--off:#f0efeb;
+      --black:#000;--white:#fff;--off:#f0efeb;--forest:#0d2b1f;--forest2:#122e22;--forest4:#245c42;--gold:#c9914a;--gold-lt:#e0b278;--gold-dk:#9e6e32;
       --dim:#555;--dim2:#888;--border:#1f1f1f;
       --Fd:'Bebas Neue',sans-serif;
       --Fb:'DM Mono',monospace;
@@ -17,7 +17,7 @@
     }
     html,body{height:100%}
     body{
-      background:var(--black);color:var(--white);
+      background:var(--forest);color:var(--white);
       font-family:var(--Fb);font-size:13px;
       min-height:100vh;display:flex;flex-direction:column;
       overflow-x:hidden;cursor:none;
@@ -51,7 +51,7 @@
     .logo{
       font-family:var(--Fd);font-size:28px;
       letter-spacing:5px;color:var(--white);
-      display:inline-block;
+      display:inline-block;color:var(--gold);
     }
     .left-headline{
       font-family:var(--Fd);
@@ -96,13 +96,13 @@
     .frow input:focus{border-color:var(--white)}
     .frow input::placeholder{color:var(--dim)}
     .btn{
-      width:100%;background:var(--white);color:var(--black);
+      width:100%;background:var(--gold);color:var(--forest);
       border:none;font-family:var(--Fb);font-size:11px;
       letter-spacing:4px;text-transform:uppercase;
       padding:18px;cursor:none;margin-top:8px;
       transition:background .2s,transform .15s;
     }
-    .btn:hover{background:var(--off);transform:scale(1.01)}
+    .btn:hover{background:var(--gold-lt);transform:scale(1.01)}
     .hints{
       margin-top:32px;padding-top:24px;
       border-top:1px solid var(--border);
@@ -138,7 +138,7 @@
   <!-- LEFT -->
   <div class="left">
     <canvas id="c"></canvas>
-    <a href="/" class="logo">BrandForge</a>
+    <a href="/" class="logo">VRTX</a>
     <div class="left-headline">
       SIGN<br>
       <em>back</em>
@@ -193,13 +193,13 @@ camera.position.z=16;
 const shapes=[];
 const geos=[new THREE.IcosahedronGeometry(1.1,1),new THREE.OctahedronGeometry(.9,0),new THREE.TorusGeometry(.7,.2,8,24),new THREE.BoxGeometry(1.3,1.3,1.3,3,3,3),new THREE.TetrahedronGeometry(1)];
 for(let i=0;i<12;i++){
-  const m=new THREE.Mesh(geos[i%geos.length],new THREE.MeshBasicMaterial({color:0xffffff,wireframe:true,transparent:true,opacity:.04+Math.random()*.07}));
+  const m=new THREE.Mesh(geos[i%geos.length],new THREE.MeshBasicMaterial({color:0x1a5c3a,wireframe:true,transparent:true,opacity:.04+Math.random()*.07}));
   m.position.set((Math.random()-.5)*30,(Math.random()-.5)*18,(Math.random()-.5)*8);
   m.rotation.set(Math.random()*Math.PI,Math.random()*Math.PI,0);
   m.userData={rx:(.002+Math.random()*.003)*(Math.random()>.5?1:-1),ry:(.002+Math.random()*.003)*(Math.random()>.5?1:-1),fa:.4+Math.random()*.8,fo:Math.random()*Math.PI*2,by:m.position.y};
   scene.add(m);shapes.push(m);
 }
-const tk=new THREE.Mesh(new THREE.TorusKnotGeometry(3.8,1,120,16,2,3),new THREE.MeshBasicMaterial({color:0xffffff,wireframe:true,transparent:true,opacity:.025}));
+const tk=new THREE.Mesh(new THREE.TorusKnotGeometry(3.8,1,120,16,2,3),new THREE.MeshBasicMaterial({color:0x1a5c3a,wireframe:true,transparent:true,opacity:.025}));
 scene.add(tk);
 let mouse={x:0,y:0},t=0;
 document.addEventListener('mousemove',e=>{mouse.x=(e.clientX/innerWidth-.5)*2;mouse.y=-(e.clientY/innerHeight-.5)*2});

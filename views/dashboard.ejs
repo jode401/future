@@ -10,8 +10,8 @@
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
       --black:#000;--white:#fff;--off:#f0efeb;
-      --bg:#080808;--s1:#111;--s2:#161616;
-      --border:#1f1f1f;--dim:#555;--dim2:#888;
+      --bg:#080f0b;--s1:#0d1a12;--s2:#122018;
+      --border:#1a3d2e;--dim:#4a6555;--dim2:#7a9a87;--forest:#0d2b1f;--forest4:#245c42;--gold:#c9914a;--gold-lt:#e0b278;--gold-dk:#9e6e32;
       --green:#1aff8c;--red:#ff3b3b;--amber:#ffcc00;
       --Fd:'Bebas Neue',sans-serif;
       --Fb:'DM Mono',monospace;
@@ -27,19 +27,19 @@
     /* SIDEBAR */
     .sb{
       width:var(--sw);min-width:var(--sw);
-      background:var(--black);border-right:1px solid var(--border);
+      background:var(--forest);border-right:1px solid var(--border);
       display:flex;flex-direction:column;height:100vh;
       position:fixed;top:0;left:0;z-index:50;
     }
     .sb-head{padding:28px 24px 20px;border-bottom:1px solid var(--border)}
-    .sb-logo{font-family:var(--Fd);font-size:24px;letter-spacing:4px;display:block;margin-bottom:2px}
+    .sb-logo{font-family:var(--Fd);font-size:24px;letter-spacing:4px;display:block;margin-bottom:2px;color:var(--gold)}
     .sb-sub{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--dim)}
     .sb-user{
       padding:16px 24px;border-bottom:1px solid var(--border);
       display:flex;align-items:center;gap:12px;
     }
     .av{
-      width:32px;height:32px;background:var(--white);color:var(--black);
+      width:32px;height:32px;background:var(--gold);color:var(--forest);
       font-size:10px;font-weight:bold;display:flex;align-items:center;justify-content:center;flex-shrink:0;
     }
     .av-name{font-size:11px;letter-spacing:.5px}
@@ -52,7 +52,7 @@
       transition:color .2s,border-color .2s,background .2s;
     }
     .sb-nav a:hover{color:var(--white);background:var(--s1)}
-    .sb-nav a.on{color:var(--white);border-left-color:var(--white);background:var(--s1)}
+    .sb-nav a.on{color:var(--white);border-left-color:var(--gold);background:var(--s1)}
     .sb-nav svg{width:13px;height:13px;opacity:.5;flex-shrink:0}
     .sb-nav a.on svg,.sb-nav a:hover svg{opacity:1}
     .sb-foot{padding:18px 24px;border-top:1px solid var(--border)}
@@ -61,7 +61,7 @@
       font-size:10px;letter-spacing:3px;text-transform:uppercase;
       color:var(--dim);transition:color .2s;
     }
-    .sb-logout:hover{color:var(--red)}
+    .sb-logout:hover{color:var(--gold)}
 
     /* MAIN */
     .main{margin-left:var(--sw);flex:1;display:flex;flex-direction:column;height:100vh;overflow:hidden}
@@ -69,9 +69,9 @@
       height:58px;border-bottom:1px solid var(--border);
       display:flex;align-items:center;justify-content:space-between;
       padding:0 36px;flex-shrink:0;
-      background:rgba(8,8,8,.92);backdrop-filter:blur(14px);
+      background:rgba(8,15,11,.92);backdrop-filter:blur(14px);
     }
-    .tb-title{font-family:var(--Fd);font-size:20px;letter-spacing:3px}
+    .tb-title{font-family:var(--Fd);font-size:20px;letter-spacing:3px;color:var(--gold)}
     .tb-right{display:flex;align-items:center;gap:20px}
     .tb-time{font-size:10px;letter-spacing:3px;color:var(--dim)}
     .tb-back{
@@ -105,7 +105,7 @@
     .card:hover{background:var(--s2)}
     .card::after{
       content:'';position:absolute;bottom:0;left:0;right:0;
-      height:2px;background:var(--white);
+      height:2px;background:var(--gold);
       transform:scaleX(0);transform-origin:left;
       transition:transform .4s;
     }
@@ -118,7 +118,7 @@
       font-family:var(--Fd);font-size:24px;
       letter-spacing:1px;line-height:1;
     }
-    .c-budget{
+    .c-budget{color:var(--gold-lt);
       font-family:var(--Fd);font-size:22px;
       color:var(--white);
     }
@@ -163,14 +163,15 @@
 <!-- SIDEBAR -->
 <aside class="sb">
   <div class="sb-head">
-    <a href="/" class="sb-logo">BrandForge</a>
+    <a href="/" class="sb-logo">VRTX</a>
     <p class="sb-sub">Studio Dashboard</p>
   </div>
   <% if(typeof user !== 'undefined' && user){ %>
   <div class="sb-user">
-
+    <div class="av"><%=user.avatar||user.name.slice(0,2).toUpperCase()%></div>
     <div>
       <div class="av-name"><%=user.name%></div>
+      <div class="av-role"><%=user.role||'User'%></div>
     </div>
   </div>
   <% } %>
@@ -183,7 +184,10 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
       Services
     </a>
-
+    <a href="/work">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      Portfolio
+    </a>
     <a href="/contact">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
       Inquiries

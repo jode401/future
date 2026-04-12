@@ -8,15 +8,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--black:#000;--white:#fff;--dim:#555;--dim2:#888;--border:#1f1f1f;
+    :root{--black:#000;--white:#fff;--dim:#555;--dim2:#888;--border:#1f1f1f;--forest:#0d2b1f;--gold:#c9914a;--gold-lt:#e0b278;
       --Fd:'Bebas Neue',sans-serif;--Fb:'DM Mono',monospace;--Fi:'Playfair Display',serif;}
     body{
-      background:var(--black);color:var(--white);font-family:var(--Fb);
+      background:#080f0b;color:var(--white);font-family:var(--Fb);
       min-height:100vh;display:flex;flex-direction:column;
       align-items:center;justify-content:center;
       padding:40px 24px;cursor:none;overflow:hidden;
     }
-    #cur{position:fixed;width:8px;height:8px;background:var(--white);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s;mix-blend-mode:difference;}
+    #cur{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s;mix-blend-mode:difference;}
     #cur.big{width:40px;height:40px}
     canvas{position:fixed;inset:0;z-index:0}
     .content{position:relative;z-index:2;text-align:center;max-width:600px}
@@ -34,7 +34,7 @@
     }
     .divider{
       width:60px;height:1px;
-      background:var(--border);
+      background:#1a3d2e;
       margin:28px auto;
     }
     h1{
@@ -45,16 +45,16 @@
     .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
     .btn-w{
       display:inline-block;
-      background:var(--white);color:var(--black);
+      background:var(--gold);color:var(--forest);
       font-family:var(--Fb);font-size:10px;
       letter-spacing:4px;text-transform:uppercase;
       padding:16px 36px;text-decoration:none;
       transition:background .2s;cursor:none;
     }
-    .btn-w:hover{background:#e8e8e8}
+    .btn-w:hover{background:var(--gold-lt)}
     .btn-o{
       display:inline-block;
-      border:1px solid var(--border);color:var(--dim);
+      border:1px solid #1a3d2e;color:var(--dim2);
       font-family:var(--Fb);font-size:10px;
       letter-spacing:4px;text-transform:uppercase;
       padding:16px 36px;text-decoration:none;
@@ -84,7 +84,6 @@
   <p>The page you're looking for has moved,<br>been deleted, or never existed.</p>
   <div class="actions">
     <a href="/" class="btn-w">Go Home &rarr;</a>
-    <a href="/dashboard" class="btn-o">Dashboard</a>
   </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -105,14 +104,14 @@ camera.position.z=20;
 const shapes=[];
 for(let i=0;i<18;i++){
   const g=i%3===0?new THREE.IcosahedronGeometry(.6+Math.random()*.8,1):i%3===1?new THREE.OctahedronGeometry(.5+Math.random()*.7,0):new THREE.BoxGeometry(.8+Math.random()*.6,.8+Math.random()*.6,.8+Math.random()*.6,2,2,2);
-  const m=new THREE.Mesh(g,new THREE.MeshBasicMaterial({color:0xffffff,wireframe:true,transparent:true,opacity:.03+Math.random()*.07}));
+  const m=new THREE.Mesh(g,new THREE.MeshBasicMaterial({color:0x1a5c3a,wireframe:true,transparent:true,opacity:.05+Math.random()*.07}));
   m.position.set((Math.random()-.5)*40,(Math.random()-.5)*22,(Math.random()-.5)*10);
   m.userData={rx:(.001+Math.random()*.003)*(Math.random()>.5?1:-1),ry:(.001+Math.random()*.003)*(Math.random()>.5?1:-1),fa:.3+Math.random()*.8,fo:Math.random()*Math.PI*2,by:m.position.y};
   scene.add(m);shapes.push(m);
 }
-const ring1=new THREE.Mesh(new THREE.TorusGeometry(12,.02,2,100),new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.06}));
+const ring1=new THREE.Mesh(new THREE.TorusGeometry(12,.02,2,100),new THREE.MeshBasicMaterial({color:0xc9914a,transparent:true,opacity:.08}));
 ring1.rotation.x=Math.PI/3;scene.add(ring1);
-const ring2=new THREE.Mesh(new THREE.TorusGeometry(8,.015,2,80),new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.04}));
+const ring2=new THREE.Mesh(new THREE.TorusGeometry(8,.015,2,80),new THREE.MeshBasicMaterial({color:0x245c42,transparent:true,opacity:.06}));
 ring2.rotation.x=Math.PI/5;ring2.rotation.z=Math.PI/4;scene.add(ring2);
 
 let mouse={x:0,y:0},t=0;
