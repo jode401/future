@@ -3,11 +3,302 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Work — BrandForge Digital Agency</title>
+  <title>Our Work — BrandForge</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css" />
-    <link rel="icon" href="/logo.png" type="image/x-icon">
+  <style>
+    /* ===== WORK PAGE SPECIFIC ===== */
+    .projects-section {
+      padding: 80px 48px 120px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Featured projects — large cards stacked */
+    .project-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid #1a3d2e;
+      margin-bottom: 2px;
+      overflow: hidden;
+      position: relative;
+      transition: border-color 0.4s;
+    }
+    .project-card:hover { border-color: var(--gold); }
+    .project-card.reverse { direction: rtl; }
+    .project-card.reverse > * { direction: ltr; }
+
+    /* Browser mockup preview */
+    .project-preview {
+      position: relative;
+      background: #080f0b;
+      overflow: hidden;
+      min-height: 420px;
+    }
+    .browser-chrome {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      z-index: 2;
+      background: #0d2b1f;
+      border-bottom: 1px solid #1a3d2e;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .browser-dots { display: flex; gap: 5px; }
+    .browser-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+    }
+    .dot-r { background: #3a1a1a; }
+    .dot-y { background: #3a2e10; }
+    .dot-g { background: #1a3d2e; }
+    .browser-bar {
+      flex: 1;
+      background: #0a1f14;
+      border: 1px solid #1a3d2e;
+      border-radius: 2px;
+      padding: 4px 10px;
+      font-family: var(--font-body);
+      font-size: 9px;
+      letter-spacing: 1px;
+      color: #4a6555;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .browser-visit {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold-dk);
+      white-space: nowrap;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .browser-visit:hover { color: var(--gold); }
+
+    /* iframe preview */
+    .preview-iframe-wrap {
+      position: absolute;
+      top: 36px; left: 0; right: 0; bottom: 0;
+      overflow: hidden;
+    }
+    .preview-iframe-wrap iframe {
+      width: 200%;
+      height: 200%;
+      transform: scale(0.5);
+      transform-origin: top left;
+      border: none;
+      pointer-events: none;
+    }
+    /* Overlay to block iframe interactions but allow card hover */
+    .preview-overlay {
+      position: absolute;
+      top: 36px; left: 0; right: 0; bottom: 0;
+      z-index: 3;
+      background: transparent;
+    }
+    /* Shimmer while loading */
+    .preview-shimmer {
+      position: absolute;
+      inset: 36px 0 0;
+      background: #0a1f14;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      transition: opacity 0.6s;
+    }
+    .shimmer-icon {
+      font-family: var(--font-display);
+      font-size: 48px;
+      color: #1a3d2e;
+      letter-spacing: 4px;
+    }
+
+    /* Project info panel */
+    .project-info {
+      background: #080f0b;
+      padding: 52px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-left: 1px solid #1a3d2e;
+    }
+    .project-card.reverse .project-info {
+      border-left: none;
+      border-right: 1px solid #1a3d2e;
+    }
+    .project-num {
+      font-family: var(--font-display);
+      font-size: 80px;
+      color: #1a3d2e;
+      line-height: 1;
+      margin-bottom: 16px;
+      user-select: none;
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .project-tag {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border: 1px solid #1a3d2e;
+      color: var(--gold-dk);
+      padding: 4px 10px;
+    }
+    .project-name {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 48px);
+      letter-spacing: 1px;
+      line-height: 1;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .project-client {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+    .project-desc {
+      font-size: 13px;
+      color: #4a6555;
+      line-height: 1.9;
+      margin-bottom: 32px;
+      max-width: 380px;
+    }
+    .project-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding-top: 24px;
+      border-top: 1px solid #1a3d2e;
+      margin-bottom: 32px;
+    }
+    .meta-label {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #245c42;
+      margin-bottom: 4px;
+    }
+    .meta-val {
+      font-size: 12px;
+      color: var(--white);
+      letter-spacing: .5px;
+    }
+    .project-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .link-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: var(--forest);
+      font-family: var(--font-body);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 13px 24px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .link-primary:hover { background: var(--gold-lt); }
+    .link-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #1a3d2e;
+      color: #4a6555;
+      font-family: var(--font-body);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 13px 24px;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .link-secondary:hover { border-color: var(--gold-dk); color: var(--gold-dk); }
+
+    /* Tech stack pills */
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+    .tech-pill {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: #0d2b1f;
+      color: #245c42;
+      padding: 4px 10px;
+      border: 1px solid #1a3d2e;
+    }
+
+    /* Results strip */
+    .results-strip {
+      background: var(--forest);
+      border-top: 1px solid #1a3d2e;
+      border-bottom: 1px solid #1a3d2e;
+      padding: 80px 48px;
+    }
+    .results-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid #1a3d2e;
+      padding-top: 40px;
+      margin-top: 48px;
+    }
+    .result-item {
+      padding-right: 32px;
+      border-right: 1px solid #1a3d2e;
+    }
+    .result-item:last-child { border-right: none; padding-right: 0; padding-left: 32px; }
+    .result-item:nth-child(2), .result-item:nth-child(3) { padding: 0 32px; }
+    .result-num {
+      font-family: var(--font-display);
+      font-size: 68px;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .result-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #245c42;
+      margin-top: 6px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .project-card { grid-template-columns: 1fr; direction: ltr; }
+      .project-card.reverse { direction: ltr; }
+      .project-preview { min-height: 280px; }
+      .project-info { border-left: none !important; border-right: none !important; border-top: 1px solid #1a3d2e; padding: 36px 28px; }
+      .projects-section { padding: 40px 24px 80px; }
+      .results-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
+      .result-item { padding: 20px !important; border-right: none; border: 1px solid #1a3d2e; }
+    }
+  </style>
 </head>
 <body>
 
@@ -20,61 +311,232 @@
     </div>
   </nav>
 
-  <section style="padding:160px 48px 80px;border-bottom:1px solid #222">
+  <!-- HERO -->
+  <section style="padding:160px 48px 80px;border-bottom:1px solid #1a3d2e;background:var(--forest)">
     <p class="section-label reveal">Selected Projects</p>
     <h1 class="section-title reveal" style="font-size:clamp(60px,10vw,130px)">
       Our <em>Work</em><br>Speaks.
     </h1>
+    <p class="reveal" style="font-size:12px;letter-spacing:2px;color:#245c42;margin-top:24px;text-transform:uppercase">3 Featured Projects &mdash; Live &amp; In Production</p>
   </section>
 
-  <section style="padding:80px 48px 120px">
-    <div class="work-page-grid">
+  <!-- PROJECTS -->
+  <section style="padding:0;background:#080f0b">
+    <div class="projects-section">
 
-      <div class="work-page-item reveal">
-        <canvas class="work-page-canvas"></canvas>
-        <div class="work-page-info">
-          <div class="work-page-tag">E-Commerce · Shopify</div>
-          <div class="work-page-name">LuxeHome Store</div>
+      <!-- PROJECT 01 — UIBuild -->
+      <div class="project-card reveal">
+        <div class="project-preview">
+          <div class="browser-chrome">
+            <div class="browser-dots">
+              <div class="browser-dot dot-r"></div>
+              <div class="browser-dot dot-y"></div>
+              <div class="browser-dot dot-g"></div>
+            </div>
+            <div class="browser-bar">https://uibuild.dev/ui</div>
+            <a href="https://uibuild.dev/ui" target="_blank" rel="noopener" class="browser-visit">Visit ↗</a>
+          </div>
+          <div class="preview-shimmer" id="shimmer-1">
+            <div class="shimmer-icon">UI</div>
+          </div>
+          <div class="preview-iframe-wrap">
+            <iframe
+              src="https://uibuild.dev/ui"
+              title="UIBuild Component Library"
+              loading="lazy"
+              onload="document.getElementById('shimmer-1').style.opacity='0'"
+            ></iframe>
+          </div>
+          <div class="preview-overlay"></div>
+        </div>
+
+        <div class="project-info">
+          <div class="project-num">01</div>
+          <div class="project-tags">
+            <span class="project-tag">Web Platform</span>
+            <span class="project-tag">Component Library</span>
+            <span class="project-tag">SaaS</span>
+          </div>
+          <div class="project-name">UIBuild</div>
+          <div class="project-client">uibuild.dev</div>
+          <p class="project-desc">
+            A production-ready open-source UI component library supporting HTML, React and Vue.
+            Features a live preview editor, monetization via likes, and 71+ free-to-copy components.
+            Built for developers who ship fast without the bloat.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-pill">HTML/CSS</span>
+            <span class="tech-pill">React</span>
+            <span class="tech-pill">Vue 3</span>
+            <span class="tech-pill">Node.js</span>
+            <span class="tech-pill">MongoDB</span>
+          </div>
+          <div class="project-meta">
+            <div>
+              <div class="meta-label">Type</div>
+              <div class="meta-val">SaaS Platform</div>
+            </div>
+            <div>
+              <div class="meta-label">Components</div>
+              <div class="meta-val">71+ &amp; Growing</div>
+            </div>
+            <div>
+              <div class="meta-label">Frameworks</div>
+              <div class="meta-val">HTML · React · Vue</div>
+            </div>
+            <div>
+              <div class="meta-label">Status</div>
+              <div class="meta-val" style="color:var(--gold)">Live ●</div>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="https://uibuild.dev/ui" target="_blank" rel="noopener" class="link-primary">View Live ↗</a>
+            <a href="/contact" class="link-secondary">Similar Project</a>
+          </div>
         </div>
       </div>
 
-      <div class="work-page-item reveal">
-        <canvas class="work-page-canvas"></canvas>
-        <div class="work-page-info">
-          <div class="work-page-tag">Marketing · Meta Ads</div>
-          <div class="work-page-name">FitLife Campaign</div>
+      <!-- PROJECT 02 — Portfolio (reversed) -->
+      <div class="project-card reverse reveal">
+        <div class="project-preview">
+          <div class="browser-chrome">
+            <div class="browser-dots">
+              <div class="browser-dot dot-r"></div>
+              <div class="browser-dot dot-y"></div>
+              <div class="browser-dot dot-g"></div>
+            </div>
+            <div class="browser-bar">https://jad-portfolio-pi.vercel.app</div>
+            <a href="https://jad-portfolio-pi.vercel.app/" target="_blank" rel="noopener" class="browser-visit">Visit ↗</a>
+          </div>
+          <div class="preview-shimmer" id="shimmer-2">
+            <div class="shimmer-icon">JAD</div>
+          </div>
+          <div class="preview-iframe-wrap">
+            <iframe
+              src="https://jad-portfolio-pi.vercel.app/"
+              title="Jad Portfolio"
+              loading="lazy"
+              onload="document.getElementById('shimmer-2').style.opacity='0'"
+            ></iframe>
+          </div>
+          <div class="preview-overlay"></div>
+        </div>
+
+        <div class="project-info">
+          <div class="project-num">02</div>
+          <div class="project-tags">
+            <span class="project-tag">Portfolio</span>
+            <span class="project-tag">Full-Stack</span>
+            <span class="project-tag">Personal Brand</span>
+          </div>
+          <div class="project-name">Developer Portfolio</div>
+          <div class="project-client">jad-portfolio-pi.vercel.app</div>
+          <p class="project-desc">
+            An elegant personal portfolio for a full-stack developer specializing in Node.js, Express,
+            MongoDB and AI integration. Refined aesthetic, smooth interactions, and a clear showcase
+            of technical capabilities across frontend, backend and database design.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-pill">Node.js</span>
+            <span class="tech-pill">Express</span>
+            <span class="tech-pill">MongoDB</span>
+            <span class="tech-pill">EJS</span>
+            <span class="tech-pill">Vercel</span>
+          </div>
+          <div class="project-meta">
+            <div>
+              <div class="meta-label">Type</div>
+              <div class="meta-val">Personal Portfolio</div>
+            </div>
+            <div>
+              <div class="meta-label">Stack</div>
+              <div class="meta-val">Full-Stack</div>
+            </div>
+            <div>
+              <div class="meta-label">Hosting</div>
+              <div class="meta-val">Vercel</div>
+            </div>
+            <div>
+              <div class="meta-label">Status</div>
+              <div class="meta-val" style="color:var(--gold)">Live ●</div>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="https://jad-portfolio-pi.vercel.app/" target="_blank" rel="noopener" class="link-primary">View Live ↗</a>
+            <a href="/contact" class="link-secondary">Similar Project</a>
+          </div>
         </div>
       </div>
 
-      <div class="work-page-item reveal">
-        <canvas class="work-page-canvas"></canvas>
-        <div class="work-page-info">
-          <div class="work-page-tag">Web Design · React</div>
-          <div class="work-page-name">Apex SaaS Platform</div>
+      <!-- PROJECT 03 — Deeptargha -->
+      <div class="project-card reveal">
+        <div class="project-preview">
+          <div class="browser-chrome">
+            <div class="browser-dots">
+              <div class="browser-dot dot-r"></div>
+              <div class="browser-dot dot-y"></div>
+              <div class="browser-dot dot-g"></div>
+            </div>
+            <div class="browser-bar">https://deeptargha.netlify.app</div>
+            <a href="https://deeptargha.netlify.app/" target="_blank" rel="noopener" class="browser-visit">Visit ↗</a>
+          </div>
+          <div class="preview-shimmer" id="shimmer-3">
+            <div class="shimmer-icon">DT</div>
+          </div>
+          <div class="preview-iframe-wrap">
+            <iframe
+              src="https://deeptargha.netlify.app/"
+              title="Deeptargha Portfolio"
+              loading="lazy"
+              onload="document.getElementById('shimmer-3').style.opacity='0'"
+            ></iframe>
+          </div>
+          <div class="preview-overlay"></div>
         </div>
-      </div>
 
-      <div class="work-page-item reveal">
-        <canvas class="work-page-canvas"></canvas>
-        <div class="work-page-info">
-          <div class="work-page-tag">Branding · Full Identity</div>
-          <div class="work-page-name">Noir Coffee Co.</div>
-        </div>
-      </div>
-
-      <div class="work-page-item reveal">
-        <canvas class="work-page-canvas"></canvas>
-        <div class="work-page-info">
-          <div class="work-page-tag">SEO · Content Strategy</div>
-          <div class="work-page-name">Meridian Law Firm</div>
-        </div>
-      </div>
-
-      <div class="work-page-item reveal">
-        <canvas class="work-page-canvas"></canvas>
-        <div class="work-page-info">
-          <div class="work-page-tag">Web App · Next.js</div>
-          <div class="work-page-name">TrackIQ Dashboard</div>
+        <div class="project-info">
+          <div class="project-num">03</div>
+          <div class="project-tags">
+            <span class="project-tag">Portfolio</span>
+            <span class="project-tag">Full-Stack</span>
+            <span class="project-tag">Freelance</span>
+          </div>
+          <div class="project-name">Deeptargha</div>
+          <div class="project-client">deeptargha.netlify.app</div>
+          <p class="project-desc">
+            A production-grade developer portfolio for a West Bengal-based full-stack developer.
+            Features glassmorphism UI, dark mode, and showcases real-world projects including
+            a finance tracker (Flask + JWT), a chess AI academy, and multiple client apps.
+          </p>
+         <div class="tech-stack">
+            <span class="tech-pill">Node.js</span>
+            <span class="tech-pill">Express</span>
+            <span class="tech-pill">MongoDB</span>
+            <span class="tech-pill">EJS</span>
+            <span class="tech-pill">Vercel</span>
+          </div>
+          <div class="project-meta">
+            <div>
+              <div class="meta-label">Type</div>
+              <div class="meta-val">Developer Portfolio</div>
+            </div>
+            <div>
+              <div class="meta-label">Projects Shown</div>
+              <div class="meta-val">10+</div>
+            </div>
+            <div>
+              <div class="meta-label">Hosting</div>
+              <div class="meta-val">Netlify</div>
+            </div>
+            <div>
+              <div class="meta-label">Status</div>
+              <div class="meta-val" style="color:var(--gold)">Live ●</div>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="https://deeptargha.netlify.app/" target="_blank" rel="noopener" class="link-primary">View Live ↗</a>
+            <a href="/contact" class="link-secondary">Similar Project</a>
+          </div>
         </div>
       </div>
 
@@ -82,29 +544,29 @@
   </section>
 
   <!-- RESULTS STRIP -->
-  <section style="background:var(--white);color:var(--black);padding:80px 48px">
-    <div style="max-width:1400px;margin:0 auto">
-      <p class="section-label reveal" style="color:#666">Real Numbers</p>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:48px;border-top:1px solid #ddd;padding-top:40px">
-        <div class="reveal">
-          <div style="font-family:var(--font-display);font-size:72px;color:var(--black);line-height:1">340%</div>
-          <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#666;margin-top:6px">Avg. Traffic Increase</div>
+  <div class="results-strip">
+    <div class="results-inner">
+      <p class="section-label reveal">Real Numbers</p>
+      <div class="results-grid">
+        <div class="result-item reveal">
+          <div class="result-num">3</div>
+          <div class="result-label">Live Projects Featured</div>
         </div>
-        <div class="reveal">
-          <div style="font-family:var(--font-display);font-size:72px;color:var(--black);line-height:1">$4.2M</div>
-          <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#666;margin-top:6px">Revenue Generated</div>
+        <div class="result-item reveal">
+          <div class="result-num">71+</div>
+          <div class="result-label">UI Components Built</div>
         </div>
-        <div class="reveal">
-          <div style="font-family:var(--font-display);font-size:72px;color:var(--black);line-height:1">120+</div>
-          <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#666;margin-top:6px">Completed Projects</div>
+        <div class="result-item reveal">
+          <div class="result-num">5+</div>
+          <div class="result-label">Tech Stacks Covered</div>
         </div>
-        <div class="reveal">
-          <div style="font-family:var(--font-display);font-size:72px;color:var(--black);line-height:1">2.8×</div>
-          <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#666;margin-top:6px">Average ROAS</div>
+        <div class="result-item reveal">
+          <div class="result-num">100%</div>
+          <div class="result-label">In Production</div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- CTA -->
   <section id="cta">
@@ -121,11 +583,11 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-top">
-      <div class="footer-mark">BrandForge</div>
+      <div class="footer-mark">VRTX</div>
       <div class="footer-tagline">We build what others only imagine.</div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">© 2025 BrandForge Studio. All rights reserved.</span>
+      <span class="footer-copy">&copy; 2025 VRTX Studio. All rights reserved.</span>
       <div class="footer-links">
         <a href="/services">Services</a>
         <a href="/work">Work</a>
