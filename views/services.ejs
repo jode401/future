@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services — BrandForge Digital Agency</title>
+  <title>Services — BrandForge</title>
+  <meta name="description" content="Full-service digital solutions: web design, branding, social media, and complete digital packages." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css" />
-    <link rel="icon" href="/logo.png" type="image/x-icon">
+  <link rel="icon" href="/logo.png" type="image/x-icon">
 </head>
 <body>
+  <div class="noise-overlay"></div>
 
   <nav id="nav">
     <a href="/" class="nav-logo">BrandForge</a>
@@ -18,83 +20,67 @@
       <a href="/work">Work</a>
       <a href="/contact" class="nav-cta">Start a Project</a>
     </div>
+    <button class="nav-burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+  <div class="mobile-nav">
+    <a href="/">Home</a>
+    <a href="/services">Services</a>
+    <a href="/work">Work</a>
+    <a href="/contact">Contact</a>
+  </div>
 
   <!-- HERO -->
   <div class="services-page-hero">
     <canvas id="services-page-canvas"></canvas>
     <div class="services-page-hero-content">
       <p class="section-label">What We Offer</p>
-      <h1 class="section-title" style="font-size:clamp(60px,10vw,140px)">
-        Services<br>That <em>Scale</em>.
+      <h1 class="section-title" style="font-size:clamp(48px,8vw,96px)">
+        Services that scale.
       </h1>
     </div>
   </div>
 
   <!-- SERVICES LIST -->
-<section style="padding:80px 48px 120px; max-width: 1200px; margin: 0 auto;">
-  <div class="services-list">
-
-    <div class="service-row reveal">
-      <div class="service-row-num">01</div>
-      <div class="service-row-name">Web Design &amp; Development</div>
-      <div class="service-row-desc">
-        Fully custom websites — not templates. We design every pixel with intent, then build
-        on modern stacks (EJS, Node.js, Webflow) optimized for speed, SEO, and conversions.
-        From sleek landing pages to scalable SaaS platforms.
+  <section style="padding:80px 56px 120px;max-width:1060px;margin:0 auto">
+    <div class="services-list">
+      <div class="service-row reveal">
+        <div class="service-row-num">01</div>
+        <div class="service-row-name">Web Design &amp; Development</div>
+        <div class="service-row-desc">Fully custom websites — not templates. Optimized for speed, SEO, and conversions.</div>
+        <div class="service-row-price">From $500</div>
       </div>
-      <div class="service-row-price">From $500</div>
-    </div>
-
-    <div class="service-row reveal">
-      <div class="service-row-num">02</div>
-      <div class="service-row-name">Brand Identity Design</div>
-      <div class="service-row-desc">
-        Logo suites, color systems, typography, and comprehensive brand guidelines. We build 
-        the visual language your business needs to show up consistently and confidently 
-        across every customer touchpoint.
+      <div class="service-row reveal">
+        <div class="service-row-num">02</div>
+        <div class="service-row-name">Brand Identity Design</div>
+        <div class="service-row-desc">Logo suites, color systems, typography, and comprehensive brand guidelines.</div>
+        <div class="service-row-price">From $200</div>
       </div>
-      <div class="service-row-price">From $200</div>
-    </div>
-
-    <div class="service-row reveal">
-      <div class="service-row-num">03</div>
-      <div class="service-row-name">Social Media Management</div>
-      <div class="service-row-desc">
-        End-to-end strategy: content creation, scheduling, and community engagement for 
-        Instagram, LinkedIn, TikTok, and X. We grow organic audiences and transform 
-        passive followers into loyal customers.
+      <div class="service-row reveal">
+        <div class="service-row-num">03</div>
+        <div class="service-row-name">Social Media Management</div>
+        <div class="service-row-desc">Content creation, scheduling, and community engagement across all platforms.</div>
+        <div class="service-row-price">From $300/mo</div>
       </div>
-      <div class="service-row-price">From $300/mo</div>
-    </div>
-
-    <div class="service-row reveal" style="border-left: 4px solid #000; padding-left: 20px;">
-      <div class="service-row-num">04</div>
-      <div class="service-row-name"><strong>Pack BrandForge</strong></div>
-      <div class="service-row-desc">
-        The ultimate growth engine. This all-in-one partner package includes full brand 
-        identity development, a custom high-performance website, and ongoing monthly 
-        social media management. Total brand cohesion for maximum impact.
+      <div class="service-row reveal" style="border-left:2px solid var(--blue);padding-left:20px">
+        <div class="service-row-num">04</div>
+        <div class="service-row-name"><strong>Pack BrandForge</strong></div>
+        <div class="service-row-desc">Full brand identity, custom website, and ongoing social media management.</div>
+        <div class="service-row-price"><strong>From $500/mo</strong></div>
       </div>
-      <div class="service-row-price"><strong>From $500/mo</strong></div>
     </div>
-
-  </div>
-</section>
+  </section>
 
   <!-- CTA -->
   <section id="cta">
     <canvas id="cta-canvas"></canvas>
     <div class="cta-content">
-      <h2 class="cta-title reveal">
-        NOT SURE<br>WHERE TO
-        <em>start?</em>
-      </h2>
+      <h2 class="cta-title reveal">Not sure where to start? <em>We'll guide you.</em></h2>
       <a href="/contact" class="btn-primary reveal">Book a Free Consultation</a>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-top">
       <div class="footer-mark">BrandForge</div>
@@ -104,7 +90,7 @@
       <span class="footer-copy">© 2025 BrandForge Studio. All rights reserved.</span>
       <div class="footer-links">
         <a href="/services">Services</a>
-              <a href="/work">Work</a>
+        <a href="/work">Work</a>
         <a href="/contact">Contact</a>
       </div>
     </div>

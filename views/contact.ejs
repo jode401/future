@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — BrandForge Digital Agency</title>
+  <title>Contact — BrandForge</title>
+  <meta name="description" content="Start your next project with BrandForge. Fill out a brief and we'll respond within 24 hours." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="icon" href="/logo.png" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css" />
 </head>
 <body>
+  <div class="noise-overlay"></div>
 
   <nav id="nav">
     <a href="/" class="nav-logo">BrandForge</a>
@@ -18,22 +20,30 @@
       <a href="/work">Work</a>
       <a href="/contact" class="nav-cta">Start a Project</a>
     </div>
+    <button class="nav-burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+  <div class="mobile-nav">
+    <a href="/">Home</a>
+    <a href="/services">Services</a>
+    <a href="/work">Work</a>
+    <a href="/contact">Contact</a>
+  </div>
 
   <div class="contact-wrapper">
-
-    <!-- LEFT -->
+    <!-- LEFT — dark -->
     <div class="contact-left">
+      <canvas id="contact-canvas"></canvas>
       <p class="section-label reveal">Let's Talk</p>
-      <h1 class="section-title reveal" style="font-size:clamp(48px,7vw,96px)">
-        Start<br>Something
-        <em>great.</em>
+      <h1 class="section-title reveal" style="font-size:clamp(40px,6vw,72px)">
+        Start something great.
       </h1>
 
       <div class="contact-info reveal">
         <div class="contact-info-item">
           <div class="contact-info-label">Email</div>
-          <div class="contact-info-val">hello@BrandForgestudio.com</div>
+          <div class="contact-info-val">brandforge851@gmail.com</div>
         </div>
         <div class="contact-info-item">
           <div class="contact-info-label">Response Time</div>
@@ -45,26 +55,24 @@
         </div>
       </div>
 
-      <div style="margin-top:64px" class="reveal">
+      <div style="margin-top:48px" class="reveal">
         <p class="section-label">What clients say</p>
-        <blockquote style="margin-top:20px;border-left:2px solid #333;padding-left:24px">
-          <p style="font-size:15px;line-height:1.8;color:var(--dim);font-style:italic">
-            "BrandForge transformed our online presence completely. Our traffic tripled in three months,
-            and our conversion rate nearly doubled. Best investment we made."
+        <blockquote style="margin-top:16px;border-left:2px solid rgba(255,255,255,0.08);padding-left:20px">
+          <p style="font-size:14px;line-height:1.6;color:rgba(255,255,255,0.5);font-style:italic;letter-spacing:-0.224px">
+            "BrandForge transformed our online presence completely. Our traffic tripled in three months."
           </p>
-          <footer style="margin-top:12px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#555">
+          <footer style="margin-top:10px;font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:-0.12px">
             — Sarah K., CEO of LuxeHome
           </footer>
         </blockquote>
       </div>
     </div>
 
-    <!-- RIGHT -->
+    <!-- RIGHT — light -->
     <div class="contact-right">
       <p class="section-label reveal">Project Brief</p>
       <form class="contact-form reveal" method="post" action="/form">
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
           <div class="form-group">
             <label for="name">Name</label>
             <input type="text" id="name" placeholder="Your name" name="name" required />
@@ -74,12 +82,10 @@
             <input type="email" id="email" placeholder="your@email.com" name="email" required />
           </div>
         </div>
-
         <div class="form-group">
           <label for="company">Company / Website</label>
-          <input name="company" type="text" id="company" placeholder="Your company or current URL" />
+          <input name="company" type="text" id="company" placeholder="Your company or URL" />
         </div>
-
         <div class="form-group">
           <label for="service">Service Needed</label>
           <select id="service" name="service" required>
@@ -93,10 +99,9 @@
             <option value="full">Full Digital Package</option>
           </select>
         </div>
-
         <div class="form-group">
           <label for="budget">Budget Range</label>
-          <select id="budget" name="budget"required>
+          <select id="budget" name="budget" required>
             <option value="" disabled selected>Select your budget...</option>
             <option value="500">Under $500/mo</option>
             <option value="1000">$500 – $1,000/mo</option>
@@ -105,25 +110,18 @@
             <option value="10000">$5,000+/mo</option>
           </select>
         </div>
-
         <div class="form-group">
           <label for="message">Tell us about your project</label>
-          <textarea name="message" id="message" rows="4" placeholder="What are your goals? What's the timeline? Any details help." required></textarea>
+          <textarea name="message" id="message" rows="4" placeholder="Goals, timeline, details..." required></textarea>
         </div>
-
-        <button type="submit" class="form-submit" id="submit-btn">
-          Send Brief →
-        </button>
-
-        <div id="success-msg" style="display:none;padding:16px;border:1px solid #333;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--dim)">
+        <button type="submit" class="form-submit" id="submit-btn">Send Brief →</button>
+        <div id="success-msg" style="display:none;padding:12px;background:rgba(0,113,227,0.08);border-radius:8px;font-size:14px;color:var(--blue);text-align:center">
           ✓ Message received — we'll be in touch within 24 hours.
         </div>
       </form>
     </div>
-
   </div>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-top">
       <div class="footer-mark">BrandForge</div>
@@ -141,17 +139,5 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="/js/main.js"></script>
-  <script>
-    function handleSubmit(e) {
-      e.preventDefault();
-      const btn = document.getElementById('submit-btn');
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
-      setTimeout(() => {
-        btn.style.display = 'none';
-        document.getElementById('success-msg').style.display = 'block';
-      }, 1200);
-    }
-  </script>
 </body>
 </html>

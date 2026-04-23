@@ -4,12 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BrandForge — Digital Agency</title>
+  <meta name="description" content="BrandForge is a full-service digital agency. We design, build, and grow brands online." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css" />
-    <link rel="icon" href="/logo.png" type="image/x-icon">
+  <link rel="icon" href="/logo.png" type="image/x-icon">
 </head>
 <body>
+  <div class="noise-overlay"></div>
 
   <nav id="nav">
     <a href="/" class="nav-logo">BrandForge</a>
@@ -18,22 +20,30 @@
       <a href="/work">Work</a>
       <a href="/contact" class="nav-cta">Start a Project</a>
     </div>
+    <button class="nav-burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+  <div class="mobile-nav">
+    <a href="/">Home</a>
+    <a href="/services">Services</a>
+    <a href="/work">Work</a>
+    <a href="/contact">Contact</a>
+  </div>
 
-  <!-- HERO -->
+  <!-- HERO — dark -->
   <section id="hero">
     <canvas id="hero-canvas"></canvas>
     <div class="hero-content">
       <p class="hero-eyebrow">Digital Agency · Est. 2025</p>
       <h1 class="hero-title">
-        WE BUILD
-        <em>the future</em>
-        ONLINE.
+        We build brands
+        <em>that move the world forward.</em>
       </h1>
       <p class="hero-sub">Websites that convert. Marketing that moves. Results that matter.</p>
       <div class="hero-actions">
-        <a href="/contact" class="btn-primary">Start Your Project</a>
-  
+        <a href="/contact" class="btn-primary">Get Started</a>
+        <a href="/work" class="btn-outline">See Our Work</a>
       </div>
     </div>
     <div class="hero-scroll">
@@ -72,97 +82,95 @@
     </div>
   </div>
 
-  <!-- ABOUT -->
-  <section>
+  <!-- ABOUT — light section -->
+  <section style="background:var(--light-bg);color:var(--text-dark)">
     <div id="about">
       <div class="about-left reveal">
         <div class="big-number">10+</div>
       </div>
       <div class="about-right reveal">
-        <p class="section-label">Who We Are</p>
-        <h2 class="section-title">
-          A studio obsessed<br>with <em>results</em>.
+        <p class="section-label" style="color:var(--link-blue)">Who We Are</p>
+        <h2 class="section-title" style="color:var(--text-dark)">
+          A studio obsessed with <em style="color:var(--text-48)">results</em>.
         </h2>
         <p class="about-body">
           BrandForge is a full-service digital agency specializing in website creation and digital marketing.
           We design, build, and grow brands online — combining sharp aesthetics with data-driven strategy
           to deliver measurable impact for every client we work with.
         </p>
-
       </div>
     </div>
   </section>
 
-  <!-- SERVICES -->
+  <!-- SERVICES — dark section -->
   <section id="services-home">
     <div class="services-header reveal">
       <div>
-        <p class="section-label" style="color:#666">What We Do</p>
-        <h2 class="section-title">Our <em>Core</em><br>Services</h2>
+        <p class="section-label">What We Do</p>
+        <h2 class="section-title">Our Core Services</h2>
       </div>
-      <a href="/services" class="btn-outline" style="color:#000;border-color:#000">See All Services</a>
+      <a href="/services" class="btn-outline">See All Services</a>
     </div>
     <div class="services-grid">
       <div class="service-card reveal">
         <div class="service-num">01</div>
         <div class="service-name">Web Design &amp; Dev</div>
-        <p class="service-desc">Custom websites built from scratch — fast, responsive, and designed to convert visitors into customers. From landing pages to complex platforms.</p>
+        <p class="service-desc">Custom websites built from scratch — fast, responsive, and designed to convert visitors into customers.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-num">02</div>
         <div class="service-name">Digital Marketing</div>
-        <p class="service-desc">SEO, paid ads, email campaigns, and social media management — unified under one strategy, driven by real data and relentless optimization.</p>
+        <p class="service-desc">SEO, paid ads, email campaigns, and social media — unified under one strategy, driven by real data.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-num">03</div>
         <div class="service-name">Brand Identity</div>
-        <p class="service-desc">Logo design, brand systems, visual language — we craft identities that are recognizable, consistent, and built to last in competitive markets.</p>
+        <p class="service-desc">Logo design, brand systems, visual language — identities that are recognizable and built to last.</p>
       </div>
     </div>
   </section>
 
-  
-  <!-- PROCESS -->
+  <!-- PROCESS — light section -->
   <section id="process">
     <div class="process-inner">
       <div class="reveal">
-        <p class="section-label" style="color:#666">How We Work</p>
-        <h2 class="section-title" style="color:#000">Our <em>Process</em></h2>
+        <p class="section-label" style="color:var(--link-blue)">How We Work</p>
+        <h2 class="section-title" style="color:var(--text-dark)">Our Process</h2>
       </div>
       <div class="process-steps">
         <div class="process-step reveal">
           <div class="step-num">01</div>
           <div class="step-title">Discover</div>
-          <p class="step-desc">We start with a deep dive into your business, goals, competitors, and audience. No assumptions — just clarity.</p>
+          <p class="step-desc">We start with a deep dive into your business, goals, competitors, and audience.</p>
         </div>
         <div class="process-step reveal">
           <div class="step-num">02</div>
           <div class="step-title">Strategize</div>
-          <p class="step-desc">We build a custom roadmap: design direction, marketing channels, timelines, and KPIs that actually matter to you.</p>
+          <p class="step-desc">We build a custom roadmap: design direction, channels, timelines, and KPIs.</p>
         </div>
         <div class="process-step reveal">
           <div class="step-num">03</div>
           <div class="step-title">Execute</div>
-          <p class="step-desc">Our team designs, develops, and launches — with complete transparency and weekly updates throughout.</p>
+          <p class="step-desc">Our team designs, develops, and launches with transparency and weekly updates.</p>
         </div>
         <div class="process-step reveal">
           <div class="step-num">04</div>
           <div class="step-title">Grow</div>
-          <p class="step-desc">Post-launch, we analyze, optimize, and scale. Your success is our success — it's that simple.</p>
+          <p class="step-desc">Post-launch, we analyze, optimize, and scale. Your success is our success.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- CTA — dark section -->
   <section id="cta">
     <canvas id="cta-canvas"></canvas>
     <div class="cta-content">
       <h2 class="cta-title reveal">
-        READY TO
-        <em>grow?</em>
+        Ready to grow?
+        <em>Let's make it happen.</em>
       </h2>
-      <a href="/contact" class="btn-primary reveal">Let's Build Together</a>
+      <a href="/contact" class="btn-primary reveal">Start Your Project</a>
     </div>
   </section>
 
